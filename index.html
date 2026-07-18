@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="libraryApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="LibraryController">
+
+<div class="container">
+
+    <h1>📚 Library Management System</h1>
+
+    <input type="text" ng-model="bookName" placeholder="Book Name">
+
+    <input type="text" ng-model="author" placeholder="Author">
+
+    <button ng-click="addBook()">
+        Add Book
+    </button>
+
+    <br><br>
+
+    <input type="text"
+           ng-model="search"
+           placeholder="Search Book">
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        <tr ng-repeat="book in books | filter:search">
+
+            <td>{{$index+1}}</td>
+
+            <td>{{book.name}}</td>
+
+            <td>{{book.author}}</td>
+
+            <td>{{book.status}}</td>
+
+            <td>
+
+                <button ng-click="toggleStatus(book)">
+                    Issue/Return
+                </button>
+
+                <button ng-click="deleteBook($index)">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
